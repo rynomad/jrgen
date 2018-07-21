@@ -20,7 +20,13 @@ class RPCClient {
           if (response.ok) {
             response.json().then((rpcResponse) => {
               if ("error" in rpcResponse) {
-                reject(rpcResponse.error);
+                this.help({method}).then((({help}) => {
+                  console.log(`Correct usage for ${method}:`)
+                  console.log(help)
+                  reject(rpcResponse.error);
+                })).catch(error => {
+                  reject(rpcResponse.error)
+                })
               }
               else {
                 resolve(rpcResponse.result);
