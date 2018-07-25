@@ -28,7 +28,7 @@ class RPCClient {
         .then(response => {
           if (response.ok) {
             response.json().then(rpcResponse => {
-              if ("error" in rpcResponse) {
+              if (rpcResponse.error) {
                 const error = {
                   message : rpcResponse.error
                 }
