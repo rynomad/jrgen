@@ -15,6 +15,7 @@ class RPCClient {
       
       fetch(this.url, {
         method: "post",
+        headers,
         body: JSON.stringify({
           jsonrpc: "2.0",
           id: Math.random()
